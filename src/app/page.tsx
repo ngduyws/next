@@ -2,30 +2,38 @@
 import Image from "next/image";
 import styles from "./page.module.css";
 import { useEffect } from "react";
+import axios from "axios";
+
+const api = axios.create({
+  // baseURL: "http://localhost:3001",
+  baseURL: "https://express1-nine.vercel.app",
+  withCredentials: true,
+});
 
 export default function Home() {
-  const handlePost = () => {
-    fetch("https://express1-nine.vercel.app/post", {
-      method: "post",
-    }).then((res) => {
-      console.log("res");
-    });
+  const setCookie = async () => {
+    try {
+      const response = await api.get("/set-cookie");
+      console.log("Set-Cookie response:", response);
+    } catch (error) {
+      console.error("Set-Cookie error:", error);
+    }
   };
 
-  const handleGet = () => {
-    fetch("https://express1-nine.vercel.app/get", {
-      method: "get",
-      credentials: "include",
-    }).then((res) => {
-      console.log("res");
-    });
+  const checkCookie = async () => {
+    try {
+      const response = await api.get("/check-cookie");
+      console.log("Check-Cookie response:", response);
+    } catch (error) {
+      console.error("Check-Cookie error:", error);
+    }
   };
 
   return (
     <div className={styles.page}>
       <main className={styles.main}>
-        <button onClick={handlePost}>Post</button>
-        <button onClick={handleGet}>Get</button>
+        <button onClick={setCookie}>SET</button>
+        <button onClick={checkCookie}>GET</button>
       </main>
       <footer className={styles.footer}>
         <a
