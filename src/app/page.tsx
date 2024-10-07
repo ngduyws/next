@@ -13,7 +13,9 @@ const api = axios.create({
 export default function Home() {
   const setCookie = async () => {
     try {
-      const response = await api.get("/set-cookie");
+      const response = await fetch("/set-cookie", {
+        credentials: "include",
+      });
       console.log("Set-Cookie response:", response);
     } catch (error) {
       console.error("Set-Cookie error:", error);
@@ -22,7 +24,9 @@ export default function Home() {
 
   const checkCookie = async () => {
     try {
-      const response = await api.get("/check-cookie");
+      const response = await fetch("/check-cookie", {
+        credentials: "include",
+      });
       console.log("Check-Cookie response:", response);
     } catch (error) {
       console.error("Check-Cookie error:", error);
