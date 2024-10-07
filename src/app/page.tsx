@@ -14,10 +14,10 @@ export default function Home() {
   const setCookie = async () => {
     try {
       const response = await fetch(
-        "https://express1-nine.vercel.app/set-cookie",
-        {
-          credentials: "include",
-        }
+        "https://express1-nine.vercel.app/set-cookie"
+        // {
+        //   credentials: "include",
+        // }
       );
       console.log("Set-Cookie response:", response);
     } catch (error) {
