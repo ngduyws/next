@@ -49,13 +49,8 @@ export default function RootLayout({
         {metadata.themeColor.map(({ media, color }, index) => (
           <meta key={index} name="theme-color" media={media} content={color} />
         ))}
-        {metadata.authors.map(({ name, url }, index) => (
-          <meta
-            key={index}
-            name="author"
-            content={name}
-            {...(url && { href: url })}
-          />
+        {metadata.authors.map(({ name }, index) => (
+          <meta key={index} name="author" content={name} />
         ))}
         <meta name="viewport" content={metadata.viewport} />
         {metadata.icons.map(({ rel, url }, index) => (
