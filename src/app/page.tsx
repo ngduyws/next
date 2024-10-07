@@ -13,9 +13,12 @@ const api = axios.create({
 export default function Home() {
   const setCookie = async () => {
     try {
-      const response = await fetch("/set-cookie", {
-        credentials: "include",
-      });
+      const response = await fetch(
+        "https://express1-nine.vercel.app/set-cookie",
+        {
+          credentials: "include",
+        }
+      );
       console.log("Set-Cookie response:", response);
     } catch (error) {
       console.error("Set-Cookie error:", error);
@@ -24,9 +27,12 @@ export default function Home() {
 
   const checkCookie = async () => {
     try {
-      const response = await fetch("/check-cookie", {
-        credentials: "include",
-      });
+      const response = await fetch(
+        "https://express1-nine.vercel.app/check-cookie",
+        {
+          credentials: "include",
+        }
+      );
       console.log("Check-Cookie response:", response);
     } catch (error) {
       console.error("Check-Cookie error:", error);
