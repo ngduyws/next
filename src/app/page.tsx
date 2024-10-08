@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import styles from "./page.module.css";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 
 const api = axios.create({
@@ -11,6 +11,8 @@ const api = axios.create({
 });
 
 export default function Home() {
+  const [response, setResponse] = useState<Response | null>(null);
+
   const setCookie = async () => {
     try {
       const response = await fetch(
@@ -19,10 +21,8 @@ export default function Home() {
           credentials: "include",
         }
       );
-      console.log("Set-Cookie response:", response);
-    } catch (error) {
-      console.error("Set-Cookie error:", error);
-    }
+      setResponse(response);
+    } catch (error) {}
   };
 
   const checkCookie = async () => {
@@ -33,15 +33,14 @@ export default function Home() {
           credentials: "include",
         }
       );
-      console.log("Check-Cookie response:", response);
-    } catch (error) {
-      console.error("Check-Cookie error:", error);
-    }
+      setResponse(response);
+    } catch (error) {}
   };
 
   return (
     <div className={styles.page}>
       <main className={styles.main}>
+        <pre>{JSON.stringify(response)}</pre>
         <button onClick={setCookie}>SET</button>
         <button onClick={checkCookie}>GET</button>
       </main>
