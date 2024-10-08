@@ -11,7 +11,7 @@ const api = axios.create({
 });
 
 export default function Home() {
-  const [response, setResponse] = useState<Response | null>(null);
+  const [response, setResponse] = useState<any>(null);
 
   const setCookie = async () => {
     try {
@@ -21,7 +21,8 @@ export default function Home() {
           credentials: "include",
         }
       );
-      setResponse(response);
+      const result = await response.json();
+      setResponse(result);
     } catch (error) {}
   };
 
@@ -33,7 +34,8 @@ export default function Home() {
           credentials: "include",
         }
       );
-      setResponse(response);
+      const result = await response.json();
+      setResponse(result);
     } catch (error) {}
   };
 
